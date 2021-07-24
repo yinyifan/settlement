@@ -1,10 +1,9 @@
 package com.yifan.settlement.controller.request;
 
 import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.math.BigInteger;
+
 
 @Data
 public class SettlementCreationRequest {
