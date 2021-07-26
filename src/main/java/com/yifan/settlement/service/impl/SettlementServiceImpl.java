@@ -17,8 +17,8 @@ import java.util.Optional;
 @Service
 public class SettlementServiceImpl implements SettlementService {
 
-    private final SettlementRepository repository;
-    private final SettlementMapper mapper;
+    private SettlementRepository repository;
+    private SettlementMapper mapper;
 
     public SettlementServiceImpl(SettlementRepository repository, SettlementMapper mapper) {
         this.repository = repository;
@@ -45,4 +45,5 @@ public class SettlementServiceImpl implements SettlementService {
             return mapper.mapEntityToSettleMsgResponse(response.get());
         }
     }
+
 }

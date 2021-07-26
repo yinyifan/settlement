@@ -1,12 +1,17 @@
 package com.yifan.settlement.util;
 
+import com.yifan.settlement.Exception.SettlementApiException;
 import com.yifan.settlement.dto.PayerParty;
 import com.yifan.settlement.dto.ReceiverParty;
 import com.yifan.settlement.dto.SettlementSSI;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+
+import static com.yifan.settlement.Exception.ErrorCodeAndMsg.SETTLEMENT_MSG_SSI_CODE_DOES_NOT_EXIST;
 
 @Service
 public class SettlementMsgUtil {
@@ -96,22 +101,30 @@ public class SettlementMsgUtil {
 
 
     public String getPayerAccNo(String ssiCode){
-        return settlementSSIMap.get(ssiCode).getPayerParty().getAccountNumber();
+        return retrieveSSIData(ssiCode).getPayerParty().getAccountNumber();
     }
 
+
+
     public String getPayerBankCode(String ssiCode){
-        return settlementSSIMap.get(ssiCode).getPayerParty().getBankCode();
+        return retrieveSSIData(ssiCode).getPayerParty().getBankCode();
     }
 
     public String getReceiverAccNo(String ssiCode){
-        return  settlementSSIMap.get(ssiCode).getReceiverParty().getAccountNumber();
+        return  retrieveSSIData(ssiCode).getReceiverParty().getAccountNumber();
     }
 
     public String getReceiverBankCode(String ssiCode){
-        return settlementSSIMap.get(ssiCode).getReceiverParty().getBankCode();
+        return retrieveSSIData(ssiCode).getReceiverParty().getBankCode();
     }
 
     public String getSupportInfo(String ssiCode){
-        return settlementSSIMap.get(ssiCode).getSupportInfo();
+        return retrieveSSIData(ssiCode).getSupportInfo();
+    }
+
+    private SettlementSSI retrieveSSIData(String ssiCode) {
+        SettlementSSI settlementSSI = Optional.ofNullable(settlementSSIMap.get(ssiCode)).orElseThrow(()->new SettlementApiException(HttpStatus.BAD_REQUEST,SETTLEMENT_MSG_SSI_CODE_DOES_NOT_EXIST));
+        return settlementSSI;
+
     }
 }

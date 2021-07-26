@@ -6,7 +6,17 @@ import com.yifan.settlement.dto.response.MarketSettleMsgResponse;
 
 public interface SettlementService {
 
+    /**
+     *
+     * @param settlementCreationRequest
+     * @return the Settlement Msg Stored in DB
+     */
     MarketSettleMsgResponse persistNewSettlement(SettlementCreationRequest settlementCreationRequest);
 
+    /**
+     *
+     * @param settlementRetrieveRequest
+     * @return existing Settlement Msg fetched by tradeId
+     */
     MarketSettleMsgResponse fetchExistingSettlementByTradeId(SettlementRetrieveRequest settlementRetrieveRequest);
 }

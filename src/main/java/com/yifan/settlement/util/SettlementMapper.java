@@ -13,8 +13,8 @@ import java.util.UUID;
 @Service
 public class SettlementMapper {
 
-    private final DateUtil dateUtil;
-    private final SettlementMsgUtil msgUtil;
+    private DateUtil dateUtil;
+    private SettlementMsgUtil msgUtil;
 
     public SettlementMapper(DateUtil dateUtil, SettlementMsgUtil msgUtil) {
         this.dateUtil = dateUtil;
@@ -45,7 +45,7 @@ public class SettlementMapper {
         response.setCurrency(savedSettlementMsg.getCurrency());
         response.setTradeId(savedSettlementMsg.getTradeId());
         response.setValueDate(savedSettlementMsg.getValueDate().toString());
-        response.setMessageId(savedSettlementMsg.getMessageId().toString());
+        response.setMessageId(savedSettlementMsg.getMessageId());
         PayerParty payerParty = new PayerParty();
         payerParty.setAccountNumber(savedSettlementMsg.getPayerAccNo());
         payerParty.setBankCode(savedSettlementMsg.getPayerBankCode());
@@ -57,4 +57,5 @@ public class SettlementMapper {
         response.setSupportingInformation(savedSettlementMsg.getSupportingInfo());
         return response;
     }
+
 }
