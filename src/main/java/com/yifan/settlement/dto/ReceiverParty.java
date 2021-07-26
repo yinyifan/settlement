@@ -1,9 +1,9 @@
-package com.yifan.settlement.controller.response;
+package com.yifan.settlement.dto;
 
 import lombok.Data;
 
 @Data
-public class PayerParty {
+public class ReceiverParty {
     private String accountNumber;
     private String bankCode;
 }

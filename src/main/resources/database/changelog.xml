@@ -4,4 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <include file="./changelog/changelog.1.x/changelog"
+    <include file="./changelog/changelog_1.x/changelog_1.0.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="settlement_1.0_tag" author="yifan" context="updatedb" labels="updatedb,settlement">
+        <tagDatabase tag="version_1.0"/>
+    </changeSet>
+
+</databaseChangeLog>

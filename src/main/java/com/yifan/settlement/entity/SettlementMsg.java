@@ -1,24 +1,48 @@
 package com.yifan.settlement.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Data
 @Entity
-@Table(name = "settlement")
+@Table(name = "client_settlement")
 public class SettlementMsg {
-
+    @Id
+    @Column(name = "trade_id")
     private String tradeId;
+
+    @Column(name = "message_id")
     private String messageId;
-    private String ssiCode;
+
     private BigDecimal amount;
+
+    @Column(name = "value_date")
+    private LocalDate valueDate;
+
     private String currency;
-    private String date;
-    private LocalDate createdDate;
+
+    @Column(name = "payer_account_number")
+    private String payerAccNo;
+
+    @Column(name = "payer_bank_code")
+    private String payerBankCode;
+
+    @Column(name = "receiver_account_number")
+    private String receiverAccNo;
+
+    @Column(name = "receiver_bank_code")
+    private String receiverBankCode;
+
+    @Column(name = "supporting_information")
+    private String supportingInfo;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
 }

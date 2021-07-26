@@ -1,4 +1,4 @@
-package com.yifan.settlement.controller.request;
+package com.yifan.settlement.dto.request;
 
 import lombok.Data;
 

@@ -1,11 +1,12 @@
 package com.yifan.settlement.controller;
 
-import com.yifan.settlement.controller.request.SettlementCreationRequest;
-import com.yifan.settlement.controller.request.SettlementRetrieveRequest;
-import com.yifan.settlement.controller.response.MarketSettleMsgResponse;
+import com.yifan.settlement.dto.request.SettlementCreationRequest;
+import com.yifan.settlement.dto.request.SettlementRetrieveRequest;
+import com.yifan.settlement.dto.response.MarketSettleMsgResponse;
 import com.yifan.settlement.service.SettlementService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -20,7 +21,7 @@ public class SettlementController {
     }
 
     @PostMapping
-    public MarketSettleMsgResponse createSettlement(@Valid SettlementCreationRequest settlementCreationRequest){
+    public MarketSettleMsgResponse createSettlement(@Valid @RequestBody SettlementCreationRequest settlementCreationRequest){
         return settlementService.persistNewSettlement(settlementCreationRequest);
     }
 

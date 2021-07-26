@@ -3,8 +3,53 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"> 
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
     <changeSet id="settlement_1.0" author="yifan" context="updatedb" labels="updatedb,settlement">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="client_settlement"/>
+            </not>
+        </preConditions>
         <comment>create settlement DB table</comment>
-        <sqlFile path=""
+
+        <createTable tableName="client_settlement">
+            <column name="trade_id" type="VARCHAR(30)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="message_id" type="VARCHAR(40)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payer_account_number" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payer_bank_code" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receiver_account_number" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="receiver_bank_code" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="supporting_information" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+       <rollback>drop table client_settlement</rollback>
     </changeSet>
+
+</databaseChangeLog>

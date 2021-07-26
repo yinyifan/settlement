@@ -1,5 +1,7 @@
-package com.yifan.settlement.controller.response;
+package com.yifan.settlement.dto.response;
 
+import com.yifan.settlement.dto.PayerParty;
+import com.yifan.settlement.dto.ReceiverParty;
 import lombok.Data;
 
 import java.math.BigDecimal;
